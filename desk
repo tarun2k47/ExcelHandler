@@ -1,0 +1,99 @@
+<body class="" oncontextmenu="return false;">
+
+    <section id="mainDiv">
+
+        <div class="mainlogin_div flipscreen login-mainbg" id="login_div">
+            <div style="clear: both;"></div>
+
+            <div class="LoginFullBody" style="width: 100%; top: 40px;">
+
+                <div id="loginbody_leftdiv" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left_logindiv" style="height: 326px;">
+                    <div class="imglogo_div">
+                        <img src="~/Content/volksoft.jpg" class="logo_image flipImg" height="150" width="250" />
+                    </div>
+                </div>
+                <div id="loginbody_rightdiv" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="login_body" id="id_login_div" onkeydown="onErrorKeyDown();">
+
+                        <h2>LOGIN</h2>
+
+                        <div style="clear: both;"></div>
+                        @using (Html.BeginForm("Login", "Employee", FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div id="signDetails">
+                                <div class="login_textbox">
+                                    <div class="fo_textbox">
+                                        <input id="txtdVal" name="DetFLVal" type="hidden" value="" />
+                                        <input id="txtUsernameenc" name="txtUsername" type="hidden" value="@ViewBag.Usernameenc" />
+                                        <input id="txtUsername" maxlength="100" class="form-control input-sm gtextbox grequired" value="@ViewBag.Username"
+                                               placeholder="Email" autocomplete="off" tabindex="1" data-preval=""
+                                               data-errormsg="Username cannot be blank" style="border-color: rgb(175, 175, 175);" type="text" onfocus="focusin()" onkeyup="uidencrypt(this);" onkeydown="visableCaptcha(this);">
+                                        @*<span style="padding: 11px 10px;">
+                                            <i class="glyphicon glyphicon-user"></i>
+                                        </span>
+                                        <i class="userline"></i>*@
+                                    </div>
+                                </div>
+                                <div class="login_textbox">
+                                    <div class="fo_textbox password">
+                                        <input id="pwd" name="txtpswdenc" type="hidden" value="" />
+                                        <input id="txtpswd" maxlength="15" autocomplete="off" class="form-control input-sm gtextbox grequired" placeholder="Password" tabindex="2" data-preval="" data-errormsg="Password cannot  be blank" type="password" onfocus="focusin()" onkeyup="pwdencrypt(this);" onkeydown="pvisableCaptcha(this);" onkeypress="capLock(event)">
+                                        @*<span style="padding: 11px 10px;">
+                                            <i class="glyphicon glyphicon-lock"></i>
+                                        </span>
+                                        <div id="idspan">
+                                            <i class="fa glyphicon glyphicon-eye-open" id="eye" onclick="toggle()">
+                                            </i>
+                                        </div>
+                                        <i class="userline"></i>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="clear: both;"></div>
+
+                            <input type="hidden" id="idRanText" value="">
+                            <div id="divcaptcha" @*style="display:none"*@>
+                                <div class="captchadiv">
+                                    @Html.Captcha("⟳", "", 4, "Captcha value cannot be blank", false)
+                                </div>
+                            </div>
+
+                            <div id="errmsgDiv" class="errormsg">
+                                @if (ViewBag.vhdnfcount != null)
+                                {
+                                    <input type="hidden" id="hdnfailurecount" name="hdnfcount" value="@ViewBag.vhdnfcount" />
+                                }
+                                else
+                                {
+                                    <input type="hidden" id="hdnfailurecount" name="hdnfcount" value="0" />
+                                }
+                                <label id="lblerror" style="font-weight:normal;height:20px">@ViewBag.message</label>
+                            </div>
+                            <div class="login-btns" style="float:right;">
+                                <button type="submit" class="" onclick="return fnsignin();" id="btnSignin" name="btnSignin" tabindex="4">Sign In</button>
+                            </div>
+                        }
+
+
+                        <div style="clear: both;"></div>
+                        <div class="checkbox_div">
+                            <a id="frgtPwd" class="theme_color-inverse" href="#" onclick="onForgotPassword()" tabindex="7" style="font-size: 13px;font-style:italic;outline:none;" data-errormsg="Enter Username">I forgot my password</a>
+                            <div style="margin-top:8px" class="login_checkbox">
+                            </div>
+                            <div class="login_checkbox">
+                            </div>
+                            <div class="login_checkbox">
+                                <label class="">Don't have Focus account? <a id="btnSignUp" class="theme_color-inverse btnfontsignup" tabindex="8" style="display: inherit;cursor:pointer">Sign Up Now</a></label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+</body>
